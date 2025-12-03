@@ -1,0 +1,11 @@
+# Whitelisted IP Addresses
+# One IP per line, lines starting with # are comments
+
+# Internal network
+10.0.0.1
+10.0.0.2
+192.168.0.1
+
+# Trusted external IPs
+8.8.8.8
+1.1.1.1

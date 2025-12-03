@@ -1,0 +1,252 @@
+{
+  "report_metadata": {
+    "generated_at": "2025-12-03T14:11:27.304491",
+    "version": "1.0.0"
+  },
+  "log_statistics": {
+    "total_entries": 89,
+    "unique_ips": 15,
+    "log_types": {
+      "apache": 40,
+      "ssh": 32,
+      "nginx": 17
+    },
+    "status_codes": {
+      "200": 21,
+      "403": 5,
+      "401": 12,
+      "404": 14,
+      "201": 2,
+      "413": 3
+    },
+    "event_types": {
+      "successful_login": 6,
+      "failed_login": 22,
+      "invalid_user": 4
+    }
+  },
+  "anomaly_statistics": {
+    "total_anomalies": 26,
+    "by_severity": {
+      "high": 24,
+      "critical": 2
+    },
+    "by_type": {
+      "blacklisted_ip": 6,
+      "brute_force": 2,
+      "suspicious_status_code": 1,
+      "sensitive_path_access": 17
+    },
+    "unique_ips": 6
+  },
+  "anomalies": [
+    {
+      "type": "blacklisted_ip",
+      "severity": "high",
+      "ip_address": "192.168.1.100",
+      "count": 7,
+      "description": "Access from blacklisted IP: 192.168.1.100",
+      "timestamp": "2025-12-03 14:11:27.302861"
+    },
+    {
+      "type": "blacklisted_ip",
+      "severity": "high",
+      "ip_address": "203.0.113.45",
+      "count": 21,
+      "description": "Access from blacklisted IP: 203.0.113.45",
+      "timestamp": "2025-12-03 14:11:27.302861"
+    },
+    {
+      "type": "blacklisted_ip",
+      "severity": "high",
+      "ip_address": "198.51.100.78",
+      "count": 10,
+      "description": "Access from blacklisted IP: 198.51.100.78",
+      "timestamp": "2025-12-03 14:11:27.302861"
+    },
+    {
+      "type": "blacklisted_ip",
+      "severity": "high",
+      "ip_address": "45.76.123.45",
+      "count": 17,
+      "description": "Access from blacklisted IP: 45.76.123.45",
+      "timestamp": "2025-12-03 14:11:27.302861"
+    },
+    {
+      "type": "blacklisted_ip",
+      "severity": "high",
+      "ip_address": "104.248.56.89",
+      "count": 7,
+      "description": "Access from blacklisted IP: 104.248.56.89",
+      "timestamp": "2025-12-03 14:11:27.302861"
+    },
+    {
+      "type": "blacklisted_ip",
+      "severity": "high",
+      "ip_address": "192.0.2.123",
+      "count": 6,
+      "description": "Access from blacklisted IP: 192.0.2.123",
+      "timestamp": "2025-12-03 14:11:27.302861"
+    },
+    {
+      "type": "brute_force",
+      "severity": "critical",
+      "ip_address": "203.0.113.45",
+      "count": 7,
+      "description": "Brute force attack detected from 203.0.113.45: 7 failed logins in 300s",
+      "timestamp": "1900-11-15 10:16:45"
+    },
+    {
+      "type": "brute_force",
+      "severity": "critical",
+      "ip_address": "45.76.123.45",
+      "count": 6,
+      "description": "Brute force attack detected from 45.76.123.45: 6 failed logins in 300s",
+      "timestamp": "1900-11-15 10:22:15"
+    },
+    {
+      "type": "suspicious_status_code",
+      "severity": "high",
+      "ip_address": "203.0.113.45",
+      "count": 12,
+      "description": "Multiple 401 responses from 203.0.113.45: 12 occurrences",
+      "timestamp": "2025-12-03 14:11:27.303392"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.168.1.100",
+      "count": null,
+      "description": "Access to sensitive path from 192.168.1.100: /admin",
+      "timestamp": "2024-11-15 10:16:45+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "198.51.100.78",
+      "count": null,
+      "description": "Access to sensitive path from 198.51.100.78: /.env",
+      "timestamp": "2024-11-15 10:18:30+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "198.51.100.78",
+      "count": null,
+      "description": "Access to sensitive path from 198.51.100.78: /config.php",
+      "timestamp": "2024-11-15 10:18:35+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "198.51.100.78",
+      "count": null,
+      "description": "Access to sensitive path from 198.51.100.78: /wp-admin",
+      "timestamp": "2024-11-15 10:18:40+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "104.248.56.89",
+      "count": null,
+      "description": "Access to sensitive path from 104.248.56.89: /backup.zip",
+      "timestamp": "2024-11-15 10:20:15+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.0.2.123",
+      "count": null,
+      "description": "Access to sensitive path from 192.0.2.123: /.git/config",
+      "timestamp": "2024-11-15 10:23:00+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.0.2.123",
+      "count": null,
+      "description": "Access to sensitive path from 192.0.2.123: /.git/config",
+      "timestamp": "2024-11-15 10:23:00+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.0.2.123",
+      "count": null,
+      "description": "Access to sensitive path from 192.0.2.123: /.git/HEAD",
+      "timestamp": "2024-11-15 10:23:05+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.168.1.100",
+      "count": null,
+      "description": "Access to sensitive path from 192.168.1.100: /admin/login",
+      "timestamp": "2024-11-15 10:30:00+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.168.1.100",
+      "count": null,
+      "description": "Access to sensitive path from 192.168.1.100: /admin/users",
+      "timestamp": "2024-11-15 10:30:05+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "104.248.56.89",
+      "count": null,
+      "description": "Access to sensitive path from 104.248.56.89: /admin",
+      "timestamp": "2024-11-15 10:31:00+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.168.1.100",
+      "count": null,
+      "description": "Access to sensitive path from 192.168.1.100: /admin",
+      "timestamp": "2024-11-15 10:16:45+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "198.51.100.78",
+      "count": null,
+      "description": "Access to sensitive path from 198.51.100.78: /.env",
+      "timestamp": "2024-11-15 10:18:30+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "198.51.100.78",
+      "count": null,
+      "description": "Access to sensitive path from 198.51.100.78: /config.php",
+      "timestamp": "2024-11-15 10:18:35+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "104.248.56.89",
+      "count": null,
+      "description": "Access to sensitive path from 104.248.56.89: /backup.zip",
+      "timestamp": "2024-11-15 10:20:15+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.0.2.123",
+      "count": null,
+      "description": "Access to sensitive path from 192.0.2.123: /.git/config",
+      "timestamp": "2024-11-15 10:23:00+00:00"
+    },
+    {
+      "type": "sensitive_path_access",
+      "severity": "high",
+      "ip_address": "192.0.2.123",
+      "count": null,
+      "description": "Access to sensitive path from 192.0.2.123: /.git/config",
+      "timestamp": "2024-11-15 10:23:00+00:00"
+    }
+  ]
+}

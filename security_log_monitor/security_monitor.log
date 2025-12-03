@@ -1,0 +1,86 @@
+2025-12-03 14:10:05 - security_monitor - INFO - ============================================================
+2025-12-03 14:10:05 - security_monitor - INFO - Security Log Monitoring & Alert Automation System
+2025-12-03 14:10:05 - security_monitor - INFO - ============================================================
+2025-12-03 14:10:05 - security_monitor - INFO - 
+[1/4] Parsing log files...
+2025-12-03 14:10:05 - security_monitor - INFO - Parsing apache_access from sample_logs/apache_access.log
+2025-12-03 14:10:05 - security_monitor.log_parser - INFO - Parsed 40 entries from sample_logs/apache_access.log
+2025-12-03 14:10:05 - security_monitor - INFO - Parsed 40 entries from apache_access
+2025-12-03 14:10:05 - security_monitor - INFO - Parsing ssh_auth from sample_logs/ssh_auth.log
+2025-12-03 14:10:05 - security_monitor.log_parser - INFO - Parsed 32 entries from sample_logs/ssh_auth.log
+2025-12-03 14:10:05 - security_monitor - INFO - Parsed 32 entries from ssh_auth
+2025-12-03 14:10:05 - security_monitor - INFO - Parsing nginx_access from sample_logs/nginx_access.log
+2025-12-03 14:10:05 - security_monitor.log_parser - INFO - Parsed 17 entries from sample_logs/nginx_access.log
+2025-12-03 14:10:05 - security_monitor - INFO - Parsed 17 entries from nginx_access
+2025-12-03 14:10:05 - security_monitor - INFO - 
+[2/4] Detecting anomalies...
+2025-12-03 14:10:05 - security_monitor - INFO - Loaded 6 IPs from blacklist
+2025-12-03 14:10:05 - security_monitor - INFO - Loaded 5 IPs from whitelist
+2025-12-03 14:10:05 - security_monitor - INFO - Analyzing logs for anomalies...
+2025-12-03 14:10:05 - security_monitor.anomaly_detector - INFO - Detected 26 anomalies
+2025-12-03 14:10:05 - security_monitor - INFO - 
+[3/4] Skipping alerts (disabled or no anomalies)
+2025-12-03 14:10:05 - security_monitor - INFO - 
+[4/4] Generating report...
+2025-12-03 14:10:05 - security_monitor - INFO - Generating HTML report...
+2025-12-03 14:10:05 - security_monitor.report_generator - INFO - Report generated: reports\security_report_20251203_141005.html
+2025-12-03 14:10:05 - security_monitor.report_generator - INFO - Report generated: reports\security_report_20251203_141005.json
+2025-12-03 14:10:05 - security_monitor - INFO - JSON report saved to: reports\security_report_20251203_141005.json
+2025-12-03 14:11:27 - security_monitor - INFO - ============================================================
+2025-12-03 14:11:27 - security_monitor - INFO - Security Log Monitoring & Alert Automation System
+2025-12-03 14:11:27 - security_monitor - INFO - ============================================================
+2025-12-03 14:11:27 - security_monitor - INFO - 
+[1/4] Parsing log files...
+2025-12-03 14:11:27 - security_monitor - INFO - Parsing apache_access from sample_logs/apache_access.log
+2025-12-03 14:11:27 - security_monitor.log_parser - INFO - Parsed 40 entries from sample_logs/apache_access.log
+2025-12-03 14:11:27 - security_monitor - INFO - Parsed 40 entries from apache_access
+2025-12-03 14:11:27 - security_monitor - INFO - Parsing ssh_auth from sample_logs/ssh_auth.log
+2025-12-03 14:11:27 - security_monitor.log_parser - INFO - Parsed 32 entries from sample_logs/ssh_auth.log
+2025-12-03 14:11:27 - security_monitor - INFO - Parsed 32 entries from ssh_auth
+2025-12-03 14:11:27 - security_monitor - INFO - Parsing nginx_access from sample_logs/nginx_access.log
+2025-12-03 14:11:27 - security_monitor.log_parser - INFO - Parsed 17 entries from sample_logs/nginx_access.log
+2025-12-03 14:11:27 - security_monitor - INFO - Parsed 17 entries from nginx_access
+2025-12-03 14:11:27 - security_monitor - INFO - 
+[2/4] Detecting anomalies...
+2025-12-03 14:11:27 - security_monitor - INFO - Loaded 6 IPs from blacklist
+2025-12-03 14:11:27 - security_monitor - INFO - Loaded 5 IPs from whitelist
+2025-12-03 14:11:27 - security_monitor - INFO - Analyzing logs for anomalies...
+2025-12-03 14:11:27 - security_monitor.anomaly_detector - INFO - Detected 26 anomalies
+2025-12-03 14:11:27 - security_monitor - INFO - 
+[3/4] Skipping alerts (disabled or no anomalies)
+2025-12-03 14:11:27 - security_monitor - INFO - 
+[4/4] Generating report...
+2025-12-03 14:11:27 - security_monitor - INFO - Generating HTML report...
+2025-12-03 14:11:27 - security_monitor.report_generator - INFO - Report generated: reports\security_report_20251203_141127.html
+2025-12-03 14:11:27 - security_monitor.report_generator - INFO - Report generated: reports\security_report_20251203_141127.json
+2025-12-03 14:11:27 - security_monitor - INFO - JSON report saved to: reports\security_report_20251203_141127.json
+2025-12-03 14:12:38 - security_monitor - INFO - ============================================================
+2025-12-03 14:12:38 - security_monitor - INFO - Security Log Monitoring & Alert Automation System
+2025-12-03 14:12:38 - security_monitor - INFO - ============================================================
+2025-12-03 14:12:38 - security_monitor - INFO - 
+[1/4] Parsing log files...
+2025-12-03 14:12:38 - security_monitor - INFO - Parsing apache_access from sample_logs/apache_access.log
+2025-12-03 14:12:38 - security_monitor.log_parser - INFO - Parsed 40 entries from sample_logs/apache_access.log
+2025-12-03 14:12:38 - security_monitor - INFO - Parsed 40 entries from apache_access
+2025-12-03 14:12:38 - security_monitor - INFO - Parsing ssh_auth from sample_logs/ssh_auth.log
+2025-12-03 14:12:38 - security_monitor.log_parser - INFO - Parsed 32 entries from sample_logs/ssh_auth.log
+2025-12-03 14:12:38 - security_monitor - INFO - Parsed 32 entries from ssh_auth
+2025-12-03 14:12:38 - security_monitor - INFO - Parsing nginx_access from sample_logs/nginx_access.log
+2025-12-03 14:12:38 - security_monitor.log_parser - INFO - Parsed 17 entries from sample_logs/nginx_access.log
+2025-12-03 14:12:38 - security_monitor - INFO - Parsed 17 entries from nginx_access
+2025-12-03 14:12:38 - security_monitor - INFO - 
+[2/4] Detecting anomalies...
+2025-12-03 14:12:38 - security_monitor - INFO - Loaded 6 IPs from blacklist
+2025-12-03 14:12:38 - security_monitor - INFO - Loaded 5 IPs from whitelist
+2025-12-03 14:12:38 - security_monitor - INFO - Analyzing logs for anomalies...
+2025-12-03 14:12:38 - security_monitor.anomaly_detector - INFO - Detected 26 anomalies
+2025-12-03 14:12:38 - security_monitor - INFO - 
+[3/4] Skipping alerts (disabled or no anomalies)
+2025-12-03 14:12:38 - security_monitor - INFO - 
+[4/4] Generating report...
+2025-12-03 14:12:38 - security_monitor - INFO - Generating HTML report...
+2025-12-03 14:12:38 - security_monitor.report_generator - INFO - Report generated: reports\security_report_20251203_141238.html
+2025-12-03 14:12:38 - security_monitor.report_generator - INFO - Report generated: reports\security_report_20251203_141238.json
+2025-12-03 14:12:38 - security_monitor - INFO - JSON report saved to: reports\security_report_20251203_141238.json
+2025-12-03 14:12:38 - security_monitor - INFO - 
+Processing complete!

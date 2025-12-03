@@ -1,0 +1,12 @@
+# Blacklisted IP Addresses
+# One IP per line, lines starting with # are comments
+
+# Known malicious IPs
+192.168.1.100
+203.0.113.45
+198.51.100.78
+192.0.2.123
+
+# Suspicious activity detected
+45.76.123.45
+104.248.56.89

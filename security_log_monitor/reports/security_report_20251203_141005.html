@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Monitoring Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .timestamp {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card h3 {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .anomaly-card {
+            background: #f8f9fa;
+            border-left: 5px solid #dc3545;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .anomaly-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .anomaly-card.critical {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+        
+        .anomaly-card.high {
+            border-left-color: #fd7e14;
+            background: #fff8f0;
+        }
+        
+        .anomaly-card.medium {
+            border-left-color: #ffc107;
+            background: #fffbf0;
+        }
+        
+        .anomaly-card.low {
+            border-left-color: #28a745;
+            background: #f0fff4;
+        }
+        
+        .anomaly-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .anomaly-type {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        .severity-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .severity-badge.critical {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .severity-badge.high {
+            background: #fd7e14;
+            color: white;
+        }
+        
+        .severity-badge.medium {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .severity-badge.low {
+            background: #28a745;
+            color: white;
+        }
+        
+        .anomaly-details {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .anomaly-details strong {
+            color: #1e3c72;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .no-anomalies {
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ Security Monitoring Report</h1>
+            <div class="timestamp">Generated: 2025-12-03 14:10:05</div>
+        </div>
+        
+        <div class="content">
+            <!-- Log Statistics Section -->
+            <div class="section">
+                <h2>📊 Log Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Log Entries</h3>
+                        <div class="value">89</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Unique IP Addresses</h3>
+                        <div class="value">15</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Anomalies</h3>
+                        <div class="value">26</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Affected IPs</h3>
+                        <div class="value">6</div>
+                    </div>
+                </div>
+                
+                <table><thead><tr><th>Log Type</th><th>Count</th><th>Percentage</th></tr></thead><tbody><tr><td>APACHE</td><td>40</td><td>44.9%</td></tr><tr><td>SSH</td><td>32</td><td>36.0%</td></tr><tr><td>NGINX</td><td>17</td><td>19.1%</td></tr></tbody></table>
+            </div>
+            
+            <!-- Anomaly Statistics Section -->
+            <div class="section">
+                <h2>⚠️ Anomaly Statistics</h2>
+                <div class="stats-grid">
+                    
+                <div class="stat-card">
+                    <h3>CRITICAL Severity</h3>
+                    <div class="value">2</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>HIGH Severity</h3>
+                    <div class="value">24</div>
+                </div>
+                
+                </div>
+                
+                <table><thead><tr><th>Anomaly Type</th><th>Count</th></tr></thead><tbody><tr><td>Sensitive Path Access</td><td>17</td></tr><tr><td>Blacklisted Ip</td><td>6</td></tr><tr><td>Brute Force</td><td>2</td></tr><tr><td>Suspicious Status Code</td><td>1</td></tr></tbody></table>
+            </div>
+            
+            <!-- Detailed Anomalies Section -->
+            <div class="section">
+                <h2>🔍 Detected Anomalies</h2>
+                
+            <div class="anomaly-card critical">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Brute Force</div>
+                    <div class="severity-badge critical">critical</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 203.0.113.45</p>
+                    <p><strong>Occurrences:</strong> 7</p>
+                    <p><strong>Description:</strong> Brute force attack detected from 203.0.113.45: 7 failed logins in 300s</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card critical">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Brute Force</div>
+                    <div class="severity-badge critical">critical</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 45.76.123.45</p>
+                    <p><strong>Occurrences:</strong> 6</p>
+                    <p><strong>Description:</strong> Brute force attack detected from 45.76.123.45: 6 failed logins in 300s</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Blacklisted Ip</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.168.1.100</p>
+                    <p><strong>Occurrences:</strong> 7</p>
+                    <p><strong>Description:</strong> Access from blacklisted IP: 192.168.1.100</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Blacklisted Ip</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 203.0.113.45</p>
+                    <p><strong>Occurrences:</strong> 21</p>
+                    <p><strong>Description:</strong> Access from blacklisted IP: 203.0.113.45</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Blacklisted Ip</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 198.51.100.78</p>
+                    <p><strong>Occurrences:</strong> 10</p>
+                    <p><strong>Description:</strong> Access from blacklisted IP: 198.51.100.78</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Blacklisted Ip</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 45.76.123.45</p>
+                    <p><strong>Occurrences:</strong> 17</p>
+                    <p><strong>Description:</strong> Access from blacklisted IP: 45.76.123.45</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Blacklisted Ip</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 104.248.56.89</p>
+                    <p><strong>Occurrences:</strong> 7</p>
+                    <p><strong>Description:</strong> Access from blacklisted IP: 104.248.56.89</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Blacklisted Ip</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.0.2.123</p>
+                    <p><strong>Occurrences:</strong> 6</p>
+                    <p><strong>Description:</strong> Access from blacklisted IP: 192.0.2.123</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Suspicious Status Code</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 203.0.113.45</p>
+                    <p><strong>Occurrences:</strong> 12</p>
+                    <p><strong>Description:</strong> Multiple 401 responses from 203.0.113.45: 12 occurrences</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.168.1.100</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.168.1.100: /admin</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 198.51.100.78</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 198.51.100.78: /.env</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 198.51.100.78</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 198.51.100.78: /config.php</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 198.51.100.78</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 198.51.100.78: /wp-admin</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 104.248.56.89</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 104.248.56.89: /backup.zip</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.0.2.123</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.0.2.123: /.git/config</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.0.2.123</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.0.2.123: /.git/config</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.0.2.123</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.0.2.123: /.git/HEAD</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.168.1.100</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.168.1.100: /admin/login</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.168.1.100</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.168.1.100: /admin/users</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 104.248.56.89</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 104.248.56.89: /admin</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.168.1.100</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.168.1.100: /admin</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 198.51.100.78</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 198.51.100.78: /.env</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 198.51.100.78</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 198.51.100.78: /config.php</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 104.248.56.89</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 104.248.56.89: /backup.zip</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.0.2.123</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.0.2.123: /.git/config</p>
+                </div>
+            </div>
+            
+            <div class="anomaly-card high">
+                <div class="anomaly-header">
+                    <div class="anomaly-type">Sensitive Path Access</div>
+                    <div class="severity-badge high">high</div>
+                </div>
+                <div class="anomaly-details">
+                    <p><strong>IP Address:</strong> 192.0.2.123</p>
+                    <p><strong>Occurrences:</strong> 0</p>
+                    <p><strong>Description:</strong> Access to sensitive path from 192.0.2.123: /.git/config</p>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Security Log Monitoring & Alert Automation System v1.0</p>
+            <p>This report was automatically generated by the security monitoring system.</p>
+        </div>
+    </div>
+</body>
+</html>

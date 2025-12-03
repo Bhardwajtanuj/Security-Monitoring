@@ -1,0 +1,64 @@
+{
+  "log_sources": [
+    {
+      "name": "apache_access",
+      "path": "sample_logs/apache_access.log",
+      "type": "apache",
+      "enabled": true
+    },
+    {
+      "name": "ssh_auth",
+      "path": "sample_logs/ssh_auth.log",
+      "type": "ssh",
+      "enabled": true
+    },
+    {
+      "name": "nginx_access",
+      "path": "sample_logs/nginx_access.log",
+      "type": "nginx",
+      "enabled": true
+    }
+  ],
+  
+  "anomaly_detection": {
+    "failed_login_threshold": 5,
+    "failed_login_window_seconds": 300,
+    "request_rate_threshold": 100,
+    "request_rate_window_seconds": 60,
+    "blacklist_file": "config/blacklist.txt",
+    "whitelist_file": "config/whitelist.txt"
+  },
+  
+  "alerting": {
+    "email": {
+      "enabled": false,
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "sender_email": "security@example.com",
+      "sender_password": "",
+      "recipients": [
+        "admin@example.com"
+      ]
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+    },
+    "throttling": {
+      "enabled": true,
+      "window_seconds": 3600,
+      "max_alerts": 10
+    }
+  },
+  
+  "reporting": {
+    "output_directory": "reports",
+    "default_format": "html",
+    "auto_generate": true
+  },
+  
+  "logging": {
+    "level": "INFO",
+    "log_file": "security_monitor.log"
+  }
+}

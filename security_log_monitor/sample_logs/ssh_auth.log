@@ -1,0 +1,32 @@
+Nov 15 10:15:23 server sshd[12345]: Accepted password for admin from 10.0.0.1 port 54321 ssh2
+Nov 15 10:16:45 server sshd[12346]: Failed password for root from 203.0.113.45 port 22334 ssh2
+Nov 15 10:16:48 server sshd[12347]: Failed password for root from 203.0.113.45 port 22335 ssh2
+Nov 15 10:16:51 server sshd[12348]: Failed password for root from 203.0.113.45 port 22336 ssh2
+Nov 15 10:16:54 server sshd[12349]: Failed password for root from 203.0.113.45 port 22337 ssh2
+Nov 15 10:16:57 server sshd[12350]: Failed password for root from 203.0.113.45 port 22338 ssh2
+Nov 15 10:17:00 server sshd[12351]: Failed password for root from 203.0.113.45 port 22339 ssh2
+Nov 15 10:17:03 server sshd[12352]: Failed password for root from 203.0.113.45 port 22340 ssh2
+Nov 15 10:18:15 server sshd[12353]: Invalid user admin123 from 198.51.100.78 port 45678 ssh2
+Nov 15 10:18:20 server sshd[12354]: Invalid user test from 198.51.100.78 port 45679 ssh2
+Nov 15 10:18:25 server sshd[12355]: Failed password for user from 198.51.100.78 port 45680 ssh2
+Nov 15 10:19:30 server sshd[12356]: Accepted password for user from 172.16.254.1 port 55555 ssh2
+Nov 15 10:20:45 server sshd[12357]: Failed password for admin from 192.168.1.100 port 33333 ssh2
+Nov 15 10:20:48 server sshd[12358]: Failed password for admin from 192.168.1.100 port 33334 ssh2
+Nov 15 10:20:51 server sshd[12359]: Failed password for admin from 192.168.1.100 port 33335 ssh2
+Nov 15 10:21:00 server sshd[12360]: Accepted password for developer from 10.0.0.2 port 44444 ssh2
+Nov 15 10:22:15 server sshd[12361]: Failed password for root from 45.76.123.45 port 11111 ssh2
+Nov 15 10:22:18 server sshd[12362]: Failed password for root from 45.76.123.45 port 11112 ssh2
+Nov 15 10:22:21 server sshd[12363]: Failed password for root from 45.76.123.45 port 11113 ssh2
+Nov 15 10:22:24 server sshd[12364]: Failed password for root from 45.76.123.45 port 11114 ssh2
+Nov 15 10:22:27 server sshd[12365]: Failed password for root from 45.76.123.45 port 11115 ssh2
+Nov 15 10:22:30 server sshd[12366]: Failed password for root from 45.76.123.45 port 11116 ssh2
+Nov 15 10:23:00 server sshd[12367]: Invalid user oracle from 104.248.56.89 port 22222 ssh2
+Nov 15 10:23:05 server sshd[12368]: Invalid user postgres from 104.248.56.89 port 22223 ssh2
+Nov 15 10:24:00 server sshd[12369]: Accepted password for admin from 10.0.0.1 port 54322 ssh2
+Nov 15 10:25:15 server sshd[12370]: Failed password for backup from 192.0.2.123 port 66666 ssh2
+Nov 15 10:25:18 server sshd[12371]: Failed password for backup from 192.0.2.123 port 66667 ssh2
+Nov 15 10:25:21 server sshd[12372]: Failed password for backup from 192.0.2.123 port 66668 ssh2
+Nov 15 10:26:00 server sshd[12373]: Accepted password for user from 172.16.254.2 port 55556 ssh2
+Nov 15 10:27:30 server sshd[12374]: Failed password for guest from 203.0.113.45 port 77777 ssh2
+Nov 15 10:27:33 server sshd[12375]: Failed password for guest from 203.0.113.45 port 77778 ssh2
+Nov 15 10:28:00 server sshd[12376]: Accepted password for admin from 10.0.0.1 port 54323 ssh2
